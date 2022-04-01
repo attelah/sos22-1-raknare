@@ -1,4 +1,4 @@
-package fi.arcada.sos22_1_raknare;
+package fi.arcada.sos22_exempel;
 
 import org.junit.Test;
 

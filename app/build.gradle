@@ -6,7 +6,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "fi.arcada.sos22_1_raknare"
+        applicationId "fi.arcada.sos22_exempel"
         minSdk 23
         targetSdk 31
         versionCode 1

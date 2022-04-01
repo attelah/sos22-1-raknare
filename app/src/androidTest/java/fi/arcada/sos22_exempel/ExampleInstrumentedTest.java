@@ -1,4 +1,4 @@
-package fi.arcada.sos22_1_raknare;
+package fi.arcada.sos22_exempel;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("fi.arcada.sos22_1_raknare", appContext.getPackageName());
+        assertEquals("fi.arcada.sos22_exempel", appContext.getPackageName());
     }
 }
