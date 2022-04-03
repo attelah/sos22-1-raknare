@@ -131,8 +131,9 @@ public class Statistics {
     }
 
     public static double calcLQ(ArrayList<Double> dataset) {
-
         ArrayList<Double> sorted = getSorted(dataset);
+        // Om det finns mindre än 4 värden så return 0
+        if (sorted.size() < 4) return 0;
         double q1 = sorted.size() * 0.25;
         int q1int = (int) Math.round(q1);
 
@@ -151,11 +152,12 @@ public class Statistics {
     public static double calcUQ(ArrayList<Double> dataset) {
 
         ArrayList<Double> sorted = getSorted(dataset);
+        // Om det finns mindre än 4 värden så return 0
+        if (sorted.size() < 4) return 0;
         double q3 = sorted.size() * 0.75;
         int q3int = (int) Math.round(q3);
 
         if (sorted.size() % 3 != 0) {
-            // Om antalet är jämnt, ta medelvärdet
             q3 = (sorted.get(q3int-1) + sorted.get(q3int)) / 2;
         }
         else {
@@ -168,7 +170,8 @@ public class Statistics {
 
     public static double calcQR(ArrayList<Double> dataset) {
         ArrayList<Double> sorted = getSorted(dataset);
-
+        // Om det finns mindre än 4 värden så return 0
+        if (sorted.size() < 4) return 0;
         double q1 = sorted.size() * 0.25;
         int q1int = (int) Math.round(q1);
         q1 = sorted.get(q1int);
@@ -178,9 +181,7 @@ public class Statistics {
         int q3int = (int) Math.round(q3);
         q3 = sorted.get(q3int);
 
-        double qr = q3-q1;
-
-        return qr;
+        return q3-q1;
     }
 
 }
