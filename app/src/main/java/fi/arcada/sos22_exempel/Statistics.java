@@ -44,15 +44,15 @@ public class Statistics {
     }
 
     // min
-    public static double getMin(ArrayList<DataItem> dataItems) {
+    public static double getMin(ArrayList<Double> dataLista) {
         // Första värdet i vår sorterade arrayList
-        return getSorted(getDataValues(dataItems)).get(0);
+        return getSorted(dataLista).get(0);
     }
 
     // max
-    public static double getMax(ArrayList<DataItem> dataItems) {
+    public static double getMax(ArrayList<Double> dataset) {
         // sista värdet i vår sorterade arrayList
-        return getSorted(getDataValues(dataItems)).get(dataItems.size()-1);
+        return getSorted(dataset).get(dataset.size()-1);
     }
 
     // Medelvärde
@@ -71,7 +71,7 @@ public class Statistics {
         double median;
         if (sorted.size() % 2 == 0) {
             // Om antalet är jämnt, ta medelvärdet av de två mittersta
-            median = sorted.get(mid-1) + sorted.get(mid) / 2;
+            median = (sorted.get(mid-1) + sorted.get(mid)) / 2;
         } else {
             // Om antalet är udda, ta det mittersta värdet
             median = sorted.get(mid);
@@ -99,7 +99,6 @@ public class Statistics {
     // Typvärde (eng. mode)
     public static double calcMode(ArrayList<Double> dataset) {
         HashMap<Double, Integer> valueCount = new HashMap<>();
-
 
         for (double dataValue: dataset) {
             Integer count = valueCount.get(dataValue);
@@ -130,4 +129,58 @@ public class Statistics {
         return modeValue;
 
     }
+
+    public static double calcLQ(ArrayList<Double> dataset) {
+
+        ArrayList<Double> sorted = getSorted(dataset);
+        double q1 = sorted.size() * 0.25;
+        int q1int = (int) Math.round(q1);
+
+        if (sorted.size() % 3 != 0) {
+            // Om antalet är jämnt, ta medelvärdet
+            q1 = (sorted.get(q1int-1) + sorted.get(q1int)) / 2;
+        }
+        else {
+
+            q1 = sorted.get(q1int-1);
+        }
+
+        return q1;
+    }
+
+    public static double calcUQ(ArrayList<Double> dataset) {
+
+        ArrayList<Double> sorted = getSorted(dataset);
+        double q3 = sorted.size() * 0.75;
+        int q3int = (int) Math.round(q3);
+
+        if (sorted.size() % 3 != 0) {
+            // Om antalet är jämnt, ta medelvärdet
+            q3 = (sorted.get(q3int-1) + sorted.get(q3int)) / 2;
+        }
+        else {
+
+            q3 = sorted.get(q3int-1);
+        }
+
+        return q3;
+    }
+
+    public static double calcQR(ArrayList<Double> dataset) {
+        ArrayList<Double> sorted = getSorted(dataset);
+
+        double q1 = sorted.size() * 0.25;
+        int q1int = (int) Math.round(q1);
+        q1 = sorted.get(q1int);
+
+
+        double q3 = sorted.size() * 0.75;
+        int q3int = (int) Math.round(q3);
+        q3 = sorted.get(q3int);
+
+        double qr = q3-q1;
+
+        return qr;
+    }
+
 }
